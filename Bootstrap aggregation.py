@@ -26,16 +26,17 @@ estimator_range=[2,4,6,8,10,12,14,16]
 
 models=[]
 scores=[]
+
 for n_estimators in estimator_range:
-    clf=BaggingClassifier(n_estimators=n_estimators,random_state=22 , _init=8)
+    clf=BaggingClassifier(n_estimators=n_estimators,random_state=22 )
     clf.fit(X_train,Y_train)
     models.append(clf)
     scores.append(accuracy_score(y_true=Y_test,y_pred=clf.predict(X_test)))
-    plt.figure(figsize=(9,6))
-    plt.plot(estimator_range,scores)
-    plt.xlabel("n_estimators",frontsize=18)
-    plt.ylabels("score",frontsize=18)
-    plt.tick_params(labelsize=18)
-    plt.tick_params(labelsize=16)
-    plt.show()
+
+plt.figure(figsize=(9,6))
+plt.plot(estimator_range,scores,marker='o')
+plt.xlabel("n_estimators",fontsize=18)
+plt.ylabel("score",fontsize=18)
+plt.tick_params(labelsize=18)
+plt.show()
 
